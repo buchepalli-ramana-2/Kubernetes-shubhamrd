@@ -1,1 +1,93 @@
-Use of Helm chart
+### Practice Guide: Hosting Grafana for Kubernetes Monitoring
+
+#### Objective
+Set up Grafana in a Kubernetes cluster to visualize and monitor cluster metrics. This guide will cover the deployment of Grafana and its integration with Prometheus for effective Kubernetes monitoring.
+
+#### Prerequisites
+- A Kubernetes cluster (like Minikube).
+- Helm installed on your local machine.
+- Basic understanding of Kubernetes and monitoring concepts.
+
+#### Part 1: Installing Prometheus for Metrics Collection
+
+1. **Add Prometheus Helm Chart Repository**
+   - Add the Prometheus community repository:
+     ```bash
+     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+     helm repo update
+     ```
+
+2. **Install Prometheus**
+   - Install Prometheus using Helm. This will collect and store the cluster metrics:
+     ```bash
+     helm install prometheus-release prometheus-community/prometheus
+     ```
+
+3. **Verify Installation**
+   - Ensure Prometheus components are running:
+     ```bash
+     kubectl get pods
+     ```
+
+#### Part 2: Deploying Grafana
+
+1. **Add Grafana Helm Chart Repository**
+   - Add the Grafana repository:
+     ```bash
+     helm repo add grafana https://grafana.github.io/helm-charts
+     helm repo update
+     ```
+
+2. **Install Grafana**
+   - Install Grafana using Helm:
+     ```bash
+     helm install grafana-release grafana/grafana
+     ```
+
+3. **Verify Grafana Installation**
+   - Check that the Grafana pod is running:
+     ```bash
+     kubectl get pods
+     ```
+
+#### Part 3: Accessing Grafana
+
+1. **Expose Grafana Service**
+   - By default, Grafana is deployed with a ClusterIP service. To access Grafana, you can change the service type to NodePort or use port-forwarding. For NodePort, run:
+     ```bash
+     kubectl patch svc grafana-release -p '{"spec": {"type": "NodePort"}}'
+     ```
+
+2. **Access Grafana Dashboard**
+   - Get the NodePort to access the Grafana UI:
+     ```bash
+     kubectl get svc grafana-release
+     ```
+   - Access Grafana in a browser using `<minikube-ip>:<node-port>`. Find Minikube IP with `minikube ip`.
+
+3. **Login to Grafana**
+   - The default username is `admin`. Get the admin password by running:
+     ```bash
+     kubectl get secret grafana-release -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+     ```
+
+#### Part 4: Configuring Grafana to Monitor Kubernetes
+
+1. **Add Prometheus as a Data Source**
+   - In Grafana, add Prometheus as a data source. Use the URL `http://prometheus-release-server` for Prometheus.
+
+2. **Import Kubernetes Dashboards**
+   - Import pre-configured dashboards or create your own. Grafana provides several Kubernetes monitoring dashboards, which can be imported using their dashboard IDs.
+
+#### Part 5: Cleanup
+
+1. **Uninstall Grafana and Prometheus**
+   - Remove the installations with Helm:
+     ```bash
+     helm uninstall grafana-release
+     helm uninstall prometheus-release
+     ```
+
+### Conclusion
+
+This practice guide outlines the steps to set up Grafana in a Kubernetes environment, integrated with Prometheus for cluster monitoring. Grafana provides a powerful and user-friendly interface to visualize the metrics collected by Prometheus, offering insights into the cluster's performance and health.
