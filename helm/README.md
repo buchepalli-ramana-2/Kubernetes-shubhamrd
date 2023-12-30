@@ -74,7 +74,7 @@ Set up Grafana in a Kubernetes cluster to visualize and monitor cluster metrics.
 #### Part 4: Configuring Grafana to Monitor Kubernetes
 
 1. **Add Prometheus as a Data Source**
-   - In Grafana, add Prometheus as a data source. Use the URL `http://prometheus-release-server` for Prometheus.
+   - In Grafana, add Prometheus as a data source. Use the URL `http://prometheus-release-server.default.svc.cluster.local` for Prometheus.
 
 2. **Import Kubernetes Dashboards**
    - Import pre-configured dashboards or create your own. Grafana provides several Kubernetes monitoring dashboards, which can be imported using their dashboard IDs.
