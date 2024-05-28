@@ -56,8 +56,9 @@ Start Minikube:
 minikube start
 ```
 
-### Troubleshooting
-If you encounter an error regarding 'vmrun' not found, ensure VMware Workstation's path is correctly added to PATH.
+
+
+________________________________________________________________________________________________________________________
 
 ## Minikube Commands and Usage
 
