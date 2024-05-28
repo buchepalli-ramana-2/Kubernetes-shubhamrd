@@ -10,7 +10,8 @@ Create a new folder on your system where you will download all the necessary fil
 ### Download Minikube
 Download the Minikube executable for Windows:
 - URL: [Minikube Releases](https://github.com/kubernetes/minikube/releases)
-- Download `minikube-windows-amd64.exe` into your folder.
+- Download `minikube-windows-amd64.exe` into your folder `C:\Minikube`.
+- Rename file from `minikube-windows-amd64.exe` to `minikube.exe`
 
 ## 2. Download kubectl
 
