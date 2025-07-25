@@ -1,5 +1,3 @@
-**Client: Mass Mutual** 
-
 **Subject: Docker & Kubernetes**
 
 **Play wit kubernetes: [https://labs.play-with-k8s.com/](https://labs.play-with-k8s.com/)**
