@@ -1,4 +1,3 @@
-**Client: Mass Mutual** 
 
 **Subject: Docker & Kubernetes**
 
